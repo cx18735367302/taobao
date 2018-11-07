@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+<div class="topnav">
+    <div class="shopname">
+        <p></p>
+    </div>
+    <div class="login">
+
+        <a href="login.html">登录</a>
+    </div>
+    <div class="user">
+
+    </div>
+    <div class="out" id="out">
+        退出登录
+    </div>
+    <div class="backindex">
+        <a href="index.html">回到首页</a>
+
+    </div>
+</div>
+<form id="form" method="post" action="php/upload.php" enctype="multipart/form-data">
+    <label for="productname">商品名称</label>
+    <input id="productname" name="productname" type="text">
+    <label for="productinfo" >商品介绍</label>
+    <input id="productinfo" name="productinfo" type="text">
+    <label for="productprise">商品价格</label>
+    <input id="productprise" name="productprise" type="text">
+    <label for="photosrc">上传图片</label>
+    <input id="photosrc" name="photosrc" type="file"  >
+    <input type="submit" id="submit">
+</form>
+<script src="js/gj.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/ajax.js"></script>
+<script >
+    $(document).ready(function(){
+        console.log(document.cookie);
+        if (cookiesutil.get('loginFlag')=='true'){
+            $('.login').hide();
+            ajax("get","php/login.php",function (result) {
+                result = JSON.parse(result);
+                $('.user').show().html('欢迎您，'+result.data.username);
+            })
+            $('.islogin').hide();
+            $('#out').show()
+        }else{
+            $('.login').show();
+            $('.user').hide();
+            $('#out').hide()
+        }
+//        $('#out').click(function(){
+//            cookiesutil.set('loginFlag','false');
+//            window.location.reload()
+//        });
+        $('#submit').click(function () {
+            if(cookiesutil.get('loginFlag')!='true'){
+                alert("请登录");
+                $('#form').submit(function () {
+                    return false
+                })
+            }else {
+                $('#form').submit()
+            }
+        });
+        ajax("get","php/upload.php",function (result) {
+            if (result=="200"){
+                alert("提交成功")
+            }else if (result=="201"){
+                alert("提交失败")
+            }
+        })
+
+    })
+</script>
+</body>
+</html>

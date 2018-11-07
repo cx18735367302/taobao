@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝网-淘你所爱</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/main.js"></script>
+</head>
+<body>
+<div class="topnav">
+    <div class="login">
+        <a href="login.html">亲，请先登录</a>
+    </div>
+    <div class="user">
+    </div>
+    <div class="out" id="out">
+        退出登录
+    </div>
+    <div class="add">
+        <a href="upload.html">上传商品</a>
+
+    </div>
+</div>
+<div class="content">
+    <div class="inner">
+        <div class="product">
+            <ul class="product-list clear">
+                <div class="flow" style="display: none">
+                    <li>
+                        <a href="product.html?id={id}">
+                            <div class="photo">
+                                <img class="photoimg" src=images/1.webp alt="">
+                            </div>
+                            <p class="prise"><span>{prise}</span></p>
+                            <p class="intro">{title}</p>
+                            <p class="clear"><span class="shop-name fl">{shopName}</span><span class="fr">{payPeople}人付款</span></p>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script  src="js/gj.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
